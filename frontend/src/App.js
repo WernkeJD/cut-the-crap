@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Home from './home'
+import Recipie from './recipie'
+import Landing from './landing'
 
 
 
@@ -8,7 +9,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exct path = "/" element = {<Home/>}/>
+        <Route exct path = "/recipe" element = {<Recipie/>}/>
+        <Route exct path = "/" element = {<Landing/>}/>
       </Routes>
     </Router>
   );

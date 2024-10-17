@@ -5,28 +5,19 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 async function getSteps(queryUrl) {
-  const response = await fetch("http://localhost:5000/cutthecrap", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ queryUrl: queryUrl }),
-  });
-
-  //helps to ensure that the url that was passed is being parsed
-  console.log(queryUrl);
+  const response = await fetch(`https://vl7w7gh4-5678.use.devtunnels.ms/cutthecrap?url=${queryUrl}`);
 
   if (!response.ok) {
     throw new Error(response.statusText);
   }
 
-  return await response.json().then((data) => data.parsed_data);
+  return await response.json().then((data) => data.output_data);
 }
 
 function StepComponent(props) {
   const { step } = props;
 
-  return (
+  return (<>
     <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
       <Accordion style={{ backgroundColor: "#36454F", margin: "3px" }}>
         <AccordionSummary
@@ -38,13 +29,22 @@ function StepComponent(props) {
         </AccordionSummary>
         <AccordionDetails>
           <p style={{ color: "#F9F6EE" }}>{step.instruction}</p>
+          {step.ingredients.map((ingredient) => {
+            return <><p style={{ color: "#F9F6EE" }}>{ingredient.name}</p>
+          <p style={{ color: "#F9F6EE" }}>{ingredient.quantity}</p></>
+          })}
+          
         </AccordionDetails>
       </Accordion>
     </div>
+    </>
   );
 }
 
-function Home() {
+function Recipie() {
+
+  
+
   const [apiData, setApiData] = useState([]);
   const [data, setData] = useState(null);
   const query = new URLSearchParams(window.location.search);
@@ -53,7 +53,7 @@ function Home() {
   useEffect(() => {
     const fetchSteps = async () => {
       const steps = await getSteps(query.get('url'));
-      setApiData(steps);
+      setApiData(steps.steps);
       console.log("Steps:", steps);
     };
     fetchSteps();
@@ -68,7 +68,7 @@ function Home() {
           fontWeight: "bold",
           textAlign: "center",
           padding: "40px",
-          fontFamily: "Brush Script MT",
+          fontFamily: "Roboto"
         }}
       >
         Here is your Recipe Without the Crap
@@ -84,4 +84,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Recipie;
