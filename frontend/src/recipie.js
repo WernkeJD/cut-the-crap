@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 async function getSteps(queryUrl) {
-  const response = await fetch(`https://vl7w7gh4-5678.use.devtunnels.ms/cutthecrap?url=${queryUrl}`);
+  const response = await fetch(`https://calorie-counter-k4kc.onrender.com/cutthecrap?url=${queryUrl}`);
 
   if (!response.ok) {
     throw new Error(response.statusText);
