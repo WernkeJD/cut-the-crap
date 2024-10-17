@@ -5,13 +5,16 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 async function getSteps(queryUrl) {
-  const response = await fetch("http://localhost:3000/cutthecrap", {
+  const response = await fetch("http://localhost:5000/cutthecrap", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ queryUrl: queryUrl }),
   });
+
+  //helps to ensure that the url that was passed is being parsed
+  console.log(queryUrl);
 
   if (!response.ok) {
     throw new Error(response.statusText);
@@ -55,24 +58,6 @@ function Home() {
     };
     fetchSteps();
   }, []);
-
-  // Fetch other data based on query
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/${query}`, {
-  //     method: "GET",
-  //     headers: {
-  //       source: "website",
-  //     },
-  //   })
-  //     .then((response) => response.text())
-  //     .then((urldata) => {
-  //       console.log("Server response:", urldata);
-  //       setData(urldata);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // }, [query]);
 
   return (
     <div style={{ paddingBottom: "20px" }}>
