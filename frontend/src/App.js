@@ -9,8 +9,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exct path = "/recipe" element = {<Recipie/>}/>
-        <Route exct path = "/" element = {<Landing/>}/>
+        <Route exact path = "/" element = {<Landing/>}/>
+        <Route path = "/recipe" element = {<Recipie/>}/>
       </Routes>
     </Router>
   );
