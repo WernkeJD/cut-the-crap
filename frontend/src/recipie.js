@@ -5,11 +5,15 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 async function getSteps(queryUrl) {
+  console.log("Here?")
   const response = await fetch(`https://calorie-counter-k4kc.onrender.com/cutthecrap?url=${queryUrl}`);
+  console.log("There?")
 
   if (!response.ok) {
+    console.log("Is this the error?")
     throw new Error(response.statusText);
   }
+  console.log("Everywhere?")
 
   return await response.json().then((data) => data.output_data);
 }
