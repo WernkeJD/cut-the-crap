@@ -6,10 +6,10 @@ import StepsComponent from "./components/Steps";
 import InfoComponent from "./components/Info";
 
 async function getSteps(queryUrl) {
-  // const response = await fetch(`https://calorie-counter-k4kc.onrender.com/cutthecrap?url=${queryUrl}`);
-  const response = await fetch(
-    `http://localhost:5678/cutthecrap?url=${queryUrl}`
-  );
+  const response = await fetch(`https://calorie-counter-k4kc.onrender.com/cutthecrap?url=${queryUrl}`);
+  // const response = await fetch(
+  //   `http://localhost:5678/cutthecrap?url=${queryUrl}`
+  // );
 
   if (!response.ok) {
     throw new Error(response.statusText);
